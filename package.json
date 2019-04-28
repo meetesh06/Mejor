@@ -11,6 +11,7 @@
     "gl-react-native": "^3.14.0",
     "react": "16.4.1",
     "react-native": "0.56.1",
+    "react-native-navigation": "^2.18.3",
     "react-native-webgl": "^0.8.0"
   },
   "devDependencies": {

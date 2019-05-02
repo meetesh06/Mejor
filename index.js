@@ -1,20 +1,15 @@
 /** @format */
 
-// import {AppRegistry} from 'react-native';
-// import App from './App';
-// import {name as appName} from './app.json';
-
-// AppRegistry.registerComponent(appName, () => App);
-
 import { Navigation } from "react-native-navigation";
-
 import Initializing from './screens/Initializing';
 import LevelSelector from './screens/LevelSelector';
-import LevelComponent from './screens/LevelComponent';
+import LevelScreen from './screens/LevelScreen';
+import ProofOfConcept from './screens/ProofOfConcept';
 
 Navigation.registerComponent(`navigation.user.Initializing`, () => Initializing);
 Navigation.registerComponent(`navigation.user.LevelSelector`, () => LevelSelector);
-Navigation.registerComponent(`navigation.user.LevelComponent`, () => LevelComponent);
+Navigation.registerComponent(`navigation.user.LevelScreen`, () => LevelScreen);
+Navigation.registerComponent(`navigation.user.ProofOfConcept`, () => ProofOfConcept);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({

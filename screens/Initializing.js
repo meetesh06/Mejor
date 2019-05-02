@@ -3,7 +3,8 @@ import {
     View,
     Image,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 import {
   Navigation
@@ -11,10 +12,46 @@ import {
 
 
 export default class App extends Component {
+  state = {
+    loading: true
+  }
+
+  async componentDidMount() {
+    try {
+      const alreadyDone = await AsyncStorage.getItem('NEW_USER');
+      if(alreadyDone) {
+        Navigation.setRoot({
+          root: {
+            stack: {
+              children: [{
+                component: {
+                  name: "navigation.user.LevelSelector",
+                  options: {
+                    topBar: {
+                      visible: false,
+                      drawBehind: true
+                    }
+                  }
+                }
+              }]
+            }
+          }
+        });
+      } else {
+        this.setState({
+          loading: false
+        })
+      }
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
   handleNextScreen = () => {
     Navigation.push(this.props.componentId, {
       component: {
-        name: 'navigation.user.LevelSelector',
+        // name: 'navigation.user.LevelSelector',
+        name: 'navigation.user.ProofOfConcept',
         options: {
           topBar: {
             visible: false,
@@ -36,6 +73,7 @@ export default class App extends Component {
         <View
           style={{
             flex: 1,
+            marginTop: 50,
             justifyContent: 'center'
           }}
         >
@@ -111,6 +149,7 @@ export default class App extends Component {
           </Text>
         </View>
         <TouchableOpacity
+          disabled={this.state.loading}
           onPress={this.handleNextScreen}
           style={{
             marginBottom: 40,

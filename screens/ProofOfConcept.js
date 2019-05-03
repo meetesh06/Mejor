@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { AsyncStorage, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { ScrollView, AsyncStorage, StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import { WebGLView } from "react-native-webgl";
 import { Navigation } from 'react-native-navigation';
 
@@ -62,75 +62,98 @@ void main() {
 
   handleNextScreen = async () => {
     await AsyncStorage.setItem('NEW_USER', 'true');
-    Navigation.push(this.props.componentId, {
-      component: {
-        name: 'navigation.user.LevelSelector',
-        options: {
-          topBar: {
-            visible: false,
-            drawBehind: true
-          }
+    // Navigation.push(this.props.componentId, {
+    //   component: {
+    //     name: 'navigation.user.LevelSelector',
+    //     options: {
+    //       topBar: {
+    //         visible: false,
+    //         drawBehind: true
+    //       }
+    //     }
+    //   }
+    // });
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [{
+            component: {
+              name: "navigation.user.LevelSelector",
+              options: {
+                topBar: {
+                  visible: false,
+                  drawBehind: true
+                }
+              }
+            }
+          }]
         }
       }
     });
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text
-          style={{
-            color: '#f0f0f0',
-            fontSize: 35,
-            marginBottom: 25
-          }}
-        >
-          Proof Of Concept
-        </Text>
-        <Text
-          style={{
-            margin: 20,
-            color: '#f0f0f0',
-            textAlign: 'center'
-          }}
-        >
-          This is a page rendering openGl library to manipuate the image
-        </Text>
-        <Image
-          style={{
-            width: 300,
-            height: 200
-          }}
-          source={{
-            uri: 'https://i.imgur.com/wxqlQkh.jpg'
-          }}
-        />
-        <WebGLView
-          style={styles.webglView}
-          onContextCreate={this.onContextCreate}
-        />
-        <TouchableOpacity
-          onPress={this.handleNextScreen}
-          style={{
-            marginTop: 20,
-            marginBottom: 40,
-            marginLeft: 20,
-            marginRight: 20,
-            borderRadius: 10,
-            padding: 15,
-            borderWidth: 2,
-            borderColor: '#fff'
-          }}
-        >
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+
           <Text
             style={{
-              color: '#fff',
+              color: '#f0f0f0',
+              fontSize: 35,
+              marginTop: 20,
+              textAlign: 'center'
+              // marginBottom: 25
+            }}
+          >
+            Proof Of Concept
+          </Text>
+          <Text
+            style={{
+              margin: 20,
+              color: '#f0f0f0',
               textAlign: 'center'
             }}
           >
-            Get Started
+            This is a page rendering openGl library to manipuate the image
           </Text>
-        </TouchableOpacity>
-      </View>
+          <Image
+            style={{
+              width: 300,
+              height: 200,
+              alignSelf: 'center'
+            }}
+            source={{
+              uri: 'https://i.imgur.com/wxqlQkh.jpg'
+            }}
+          />
+          <WebGLView
+            style={styles.webglView}
+            onContextCreate={this.onContextCreate}
+          />
+          <TouchableOpacity
+            onPress={this.handleNextScreen}
+            style={{
+              marginTop: 20,
+              marginBottom: 40,
+              marginLeft: 20,
+              marginRight: 20,
+              borderRadius: 10,
+              padding: 15,
+              borderWidth: 2,
+              borderColor: '#fff'
+            }}
+          >
+            <Text
+              style={{
+                color: '#fff',
+                textAlign: 'center'
+              }}
+            >
+              Get Started
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
@@ -144,6 +167,7 @@ const styles = StyleSheet.create({
   },
   webglView: {
     width: 300,
-    height: 200
+    height: 200,
+    alignSelf: 'center'
   }
 });

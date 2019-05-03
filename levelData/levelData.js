@@ -20,15 +20,15 @@ export const levelData = {
 export const levelMetadata = [
   {
     id: "1",
-    title: "What is a Computer Graphics ?",
-    description: "Learn about applications of Computer Graphics",
+    title: "The Journey of a pixel ?",
+    description: "Introduction to computer graphics",
     available: true
   },
   {
     id: "2",
     title: "Math + Graphics",
     description: "Learn About the integration of computer graphics and linear algebra.",
-    available: false
+    available: true
   },
   {
     id: "3",

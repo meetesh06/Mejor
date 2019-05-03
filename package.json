@@ -12,8 +12,12 @@
     "react": "16.4.1",
     "react-motion": "^0.5.2",
     "react-native": "0.56.1",
+    "react-native-deck-swiper": "^1.6.7",
     "react-native-navigation": "^2.18.3",
     "react-native-realistic-deck-swiper": "^0.1.1",
+    "react-native-swiper": "^1.5.14",
+    "react-native-video": "^4.4.1",
+    "react-native-view-overflow": "0.0.4",
     "react-native-webgl": "^0.8.0",
     "three": "^0.104.0"
   },

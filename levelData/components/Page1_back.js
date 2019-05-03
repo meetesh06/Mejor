@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   StyleSheet,
   View,
@@ -6,52 +6,19 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Platform,
   Animated,
   Dimensions,
   Image
 } from "react-native";
-import Swiper from 'react-native-swiper'
 import { WebGLView } from "react-native-webgl";
 import THREE from "../helpers/three";
+import Swiper from 'react-native-swiper';
 
-var styles = {
-  wrapper: {
-    backgroundColor: '#333',
-    paddingTop: 40,
-    paddingRight: 10,
-  },
-  webglView: {
-    alignSelf: 'center',
-    width: 300,
-    height: 300
-  },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5'
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold'
-  }
-}
+const HEIGHT = Dimensions.get('window').height;
+const WIDTH = Dimensions.get('window').width;
 
-export default class Page1 extends React.Component {
+export default class App extends React.Component {
+  // requestId: *;
   constructor(props) {
     super(props);
     this.anim1 = new Animated.Value(0);
@@ -95,7 +62,7 @@ export default class Page1 extends React.Component {
     Animated.spring(
       this.anim2,
       {
-        toValue: 500,
+        toValue: 5000,
         friction: 5
       }
     ).start(() => {
@@ -199,37 +166,37 @@ export default class Page1 extends React.Component {
     animate();
   };
   render() {
-    return(
-      <Swiper style={styles.wrapper} horizontal={Platform.OS === "ios" ? false : true} loop={false} showsButtons={false}>
-        <ScrollView>
-          <WebGLView
-            style={styles.webglView}
-            onContextCreate={this.onContextCreate}
-          />
-          <View
-            style={{
-              margin: 10
-            }}
-          >
-            <Text
-              style={{
-                color: '#c0c0c0',
-                fontSize: 25,
-                textAlign: 'center'
-              }}
-            >
-              Welcome to Computer Graphics
-            </Text>
+    return (
+      <SafeAreaView style={styles.container}>
+        <Swiper loop={false} loadMinimal loadMinimalSize={1} horizontal={false} style={styles.wrapper} showsButtons={false}>
+          <View>
+            <WebGLView
+              style={styles.webglView}
+              onContextCreate={this.onContextCreate}
+            />
             <View
               style={{
-                marginTop: 10,
-                marginLeft: 10,
-                marginRight: 20,
-                borderBottomWidth: 2,
-                borderBottomColor: '#c0c0c0',
-                borderRadius: 10,
+                margin: 10
               }}
-            />
+            >
+              <Text
+                style={{
+                  color: '#c0c0c0',
+                  fontSize: 25
+                }}
+              >
+                Welcome to Computer Graphics
+              </Text>
+              <View
+                style={{
+                  marginTop: 10,
+                  marginLeft: 10,
+                  marginRight: 20,
+                  borderBottomWidth: 2,
+                  borderBottomColor: '#c0c0c0',
+                  borderRadius: 10,
+                }}
+              />
               <Text
                 style={{
                   margin: 15,
@@ -241,57 +208,71 @@ export default class Page1 extends React.Component {
                 {'\n'}
                 Computer graphics are used to simplify the process and make it possible to render
                 complicated content like games, images, videos, etc.
-                {'\n'}
+                {/* {'\n'} */}
                 This application is meant to be an introductore course to help undergrads understand the concepts 
                 better and apply them to real life.
               </Text>
-          </View>
-        </ScrollView>
-        <ScrollView>
-            <Text
-              style={{
-                color: '#c0c0c0',
-                fontSize: 25,
-                fontWeight: 'bold'
-              }}
-            >
-              Introduction
-            </Text>
-            <View>
-              <Image style={{ width: '100%', marginTop: 30, height: 200, borderRadius: 10 }} resizeMode="contain" source={require('../../media/page1_media_2.png')} />
               <Text
                 style={{
-                  color: '#f0f0f0',
                   marginTop: 40,
-                  fontSize: 20,
                   textAlign: 'center',
-                  fontWeight: '400'
+                  color: '#a0a0a0'
                 }}
               >
-                1.1 Everything starts with a pixel
-              </Text>
-              <Text
-                style={{
-                  margin: 15,
-                  color: '#c0c0c0',
-                  fontSize: 20
-                }}
-              >
-                A pixel is the smallest unit of a digital image or graphic that can be displayed and represented on a digital display device.
-                {'\n'}
-                {'\n'}
-                A pixel is the basic logical unit in digital graphics. Pixels are combined to form a complete image, video, text or any visible thing on a computer display.
-                {'\n'}
-                {'\n'}
-                A pixel is also known as a picture element.
+                Swipe down to get started
               </Text>
             </View>
-        </ScrollView>
-        <ScrollView>
+          </View>
+          <View>
             <View
               style={{
-                margin: 10,
-                paddingBottom: 50
+                margin: 10
+              }}
+            >
+              <Text
+                style={{
+                  color: '#c0c0c0',
+                  fontSize: 25,
+                  fontWeight: 'bold'
+                }}
+              >
+                Introduction
+              </Text>
+              <View>
+                <Image style={{ width: '100%', marginTop: 30, height: 200, borderRadius: 10 }} resizeMode="contain" source={require('../../media/page1_media_2.png')} />
+                <Text
+                  style={{
+                    color: '#f0f0f0',
+                    marginTop: 40,
+                    fontSize: 20,
+                    textAlign: 'center',
+                    fontWeight: '400'
+                  }}
+                >
+                  1.1 Everything starts with a pixel
+                </Text>
+                <Text
+                  style={{
+                    margin: 15,
+                    color: '#c0c0c0',
+                    fontSize: 20
+                  }}
+                >
+                  A pixel is the smallest unit of a digital image or graphic that can be displayed and represented on a digital display device.
+                  {'\n'}
+                  {'\n'}
+                  A pixel is the basic logical unit in digital graphics. Pixels are combined to form a complete image, video, text or any visible thing on a computer display.
+                  {'\n'}
+                  {'\n'}
+                  A pixel is also known as a picture element.
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View>
+            <View
+              style={{
+                margin: 10
               }}
             >
               <Text
@@ -378,8 +359,8 @@ export default class Page1 extends React.Component {
                 </TouchableOpacity>
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -447,8 +428,8 @@ export default class Page1 extends React.Component {
                 </Text>
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -598,8 +579,8 @@ export default class Page1 extends React.Component {
                 </View>
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -767,8 +748,8 @@ export default class Page1 extends React.Component {
                 </Text>
               </TouchableOpacity>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -805,8 +786,8 @@ export default class Page1 extends React.Component {
                 
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -847,8 +828,8 @@ export default class Page1 extends React.Component {
                 
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -884,8 +865,8 @@ export default class Page1 extends React.Component {
                 
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -927,8 +908,8 @@ export default class Page1 extends React.Component {
                 </Text>
               </View>
             </View>
-          </ScrollView>
-          <ScrollView>
+          </View>
+          <View>
             <View
               style={{
                 margin: 10
@@ -980,9 +961,9 @@ export default class Page1 extends React.Component {
                 </Text>
               </View>
             </View>
-          </ScrollView>
+          </View>
           
-          <ScrollView>
+          <View>
             <View
               style={{
                 margin: 10
@@ -1033,8 +1014,24 @@ export default class Page1 extends React.Component {
                 </Text>
               </View>
             </View>
-          </ScrollView>
-      </Swiper>
+          </View>
+          
+        </Swiper>
+      </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#333",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  webglView: {
+    alignSelf: 'center',
+    width: 300,
+    height: 300
+  }
+});

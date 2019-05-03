@@ -10,9 +10,7 @@ export default class App extends React.Component {
     const Component = levelData[this.props.level_id].pageComponent;
     
     return (
-      <View style={styles.container}>
-        <Component />
-      </View>
+      <Component />
     );
   }
 }

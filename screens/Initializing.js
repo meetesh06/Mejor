@@ -4,6 +4,7 @@ import {
     Image,
     Text,
     TouchableOpacity,
+    ScrollView,
     AsyncStorage
 } from 'react-native';
 import {
@@ -73,7 +74,7 @@ export default class App extends Component {
         <View
           style={{
             flex: 1,
-            marginTop: 50,
+            marginTop: 10,
             justifyContent: 'center'
           }}
         >
@@ -115,13 +116,13 @@ export default class App extends Component {
             </Text>
           </View>
         </View>
-        <View
+        <ScrollView
           style={{
             flex: 2,
             backgroundColor: '#f0f0f044',
             margin: 20,
             padding: 15,
-            justifyContent: 'center',
+            // justifyContent: 'center',
             borderRadius: 20
           }}
         >
@@ -147,7 +148,7 @@ export default class App extends Component {
             {'\n'}
             https://github.com/meetesh06/Mejor
           </Text>
-        </View>
+        </ScrollView>
         <TouchableOpacity
           disabled={this.state.loading}
           onPress={this.handleNextScreen}
